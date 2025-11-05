@@ -1,0 +1,228 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Arabic:wght@300;400;500;600;700;800&family=Tajawal:wght@300;400;500;700;800&family=Cairo:wght@300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 0 0% 100%;
+    --foreground: 0 0% 7%;
+    
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 7%;
+    
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 7%;
+    
+    --primary: 247 89% 66%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 162 95% 73%;
+    --secondary-foreground: 0 0% 7%;
+    
+    --muted: 0 0% 96%;
+    --muted-foreground: 0 0% 45%;
+    
+    --accent: 162 95% 73%;
+    --accent-foreground: 0 0% 7%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+    
+    --border: 0 0% 90%;
+    --input: 0 0% 90%;
+    --ring: 247 89% 66%;
+    
+    --radius: 0.75rem;
+    
+    --dark: 0 0% 7%;
+    --light: 0 0% 100%;
+    
+    --gradient-primary: linear-gradient(135deg, hsl(247 89% 66%), hsl(247 89% 76%));
+    --gradient-secondary: linear-gradient(135deg, hsl(162 95% 73%), hsl(162 95% 83%));
+    
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .dark {
+    --background: 0 0% 7%;
+    --foreground: 0 0% 100%;
+    
+    --card: 0 0% 10%;
+    --card-foreground: 0 0% 100%;
+    
+    --popover: 0 0% 10%;
+    --popover-foreground: 0 0% 100%;
+    
+    --primary: 247 89% 66%;
+    --primary-foreground: 0 0% 100%;
+    
+    --secondary: 162 95% 73%;
+    --secondary-foreground: 0 0% 7%;
+    
+    --muted: 0 0% 15%;
+    --muted-foreground: 0 0% 65%;
+    
+    --accent: 162 95% 73%;
+    --accent-foreground: 0 0% 7%;
+    
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  }
+
+  [dir="rtl"] {
+    direction: rtl;
+    font-family: 'Noto Sans Arabic', 'Tajawal', 'Cairo', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    font-weight: 400;
+    line-height: 1.8;
+    letter-spacing: 0.01em;
+  }
+
+  [dir="rtl"] h1,
+  [dir="rtl"] h2,
+  [dir="rtl"] h3,
+  [dir="rtl"] h4,
+  [dir="rtl"] h5,
+  [dir="rtl"] h6 {
+    font-weight: 700;
+    line-height: 1.6;
+    letter-spacing: 0.02em;
+    word-spacing: 0.1em;
+  }
+
+  [dir="rtl"] p {
+    font-weight: 400;
+    line-height: 2;
+    letter-spacing: 0.01em;
+    word-spacing: 0.05em;
+  }
+
+  [dir="rtl"] button,
+  [dir="rtl"] .button {
+    font-weight: 600;
+    letter-spacing: 0.02em;
+  }
+
+  [dir="rtl"] strong,
+  [dir="rtl"] b {
+    font-weight: 700;
+  }
+
+  [dir="ltr"] {
+    direction: ltr;
+  }
+}
+
+@layer utilities {
+  /* Logo carousel animation */
+  @keyframes scroll {
+    0% {
+      transform: translateX(0);
+    }
+    100% {
+      transform: translateX(-50%);
+    }
+  }
+
+  .animate-scroll {
+    animation: scroll 15s linear infinite;
+  }
+
+  .animate-scroll:hover {
+    animation-play-state: paused;
+  }
+
+  /* Reverse logo carousel animation */
+  @keyframes scroll-reverse {
+    0% {
+      transform: translateX(-50%);
+    }
+    100% {
+      transform: translateX(0);
+    }
+  }
+
+  .animate-scroll-reverse {
+    animation: scroll-reverse 15s linear infinite;
+  }
+
+  .animate-scroll-reverse:hover {
+    animation-play-state: paused;
+  }
+
+  /* Fade in animation */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(20px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-fadeIn {
+    animation: fadeIn 0.5s ease-out;
+  }
+
+  /* Arabic Typography Utilities */
+  [dir="rtl"] .text-light {
+    font-weight: 300;
+  }
+
+  [dir="rtl"] .text-normal {
+    font-weight: 400;
+  }
+
+  [dir="rtl"] .text-medium {
+    font-weight: 500;
+  }
+
+  [dir="rtl"] .text-semibold {
+    font-weight: 600;
+  }
+
+  [dir="rtl"] .text-bold {
+    font-weight: 700;
+  }
+
+  [dir="rtl"] .text-extrabold {
+    font-weight: 800;
+  }
+
+  /* Arabic spacing utilities */
+  [dir="rtl"] .leading-relaxed-ar {
+    line-height: 2;
+  }
+
+  [dir="rtl"] .leading-loose-ar {
+    line-height: 2.2;
+  }
+
+  [dir="rtl"] .tracking-wide-ar {
+    letter-spacing: 0.02em;
+    word-spacing: 0.1em;
+  }
+
+  [dir="rtl"] .tracking-wider-ar {
+    letter-spacing: 0.03em;
+    word-spacing: 0.15em;
+  }
+}

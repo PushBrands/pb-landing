@@ -1,0 +1,6 @@
+# Redirect old URLs to English versions
+/ads              /en/ads           301
+/creators         /en/creators      301
+
+# SPA fallback
+/*                /index.html       200
