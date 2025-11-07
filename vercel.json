@@ -1,4 +1,11 @@
 {
+  "trailingSlash": false,
+  "redirects": [
+    {
+      "source": "/:path+/",
+      "destination": "/:path+"
+    }
+  ],
   "rewrites": [
     {
       "source": "/:path*",
