@@ -4,12 +4,26 @@
   "framework": "vite",
   "rewrites": [
     {
-      "source": "/(en|ar)/:path*",
+      "source": "/en",
       "destination": "/index.html"
     },
     {
-      "source": "/:path*",
+      "source": "/ar",
       "destination": "/index.html"
+    },
+    {
+      "source": "/en/:path*",
+      "destination": "/index.html"
+    },
+    {
+      "source": "/ar/:path*",
+      "destination": "/index.html"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/",
+      "dest": "/index.html"
     }
   ],
   "headers": [
