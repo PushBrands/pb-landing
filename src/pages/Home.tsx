@@ -152,7 +152,7 @@ export const Home = () => {
       <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-7xl">
           <div className="grid lg:grid-cols-2 gap-10 sm:gap-12 md:gap-16 items-center">
-            <div className={`space-y-6 ${language === 'ar' ? 'lg:order-2' : ''}`}>
+            <div className={`space-y-6 order-2 lg:order-1 ${language === 'ar' ? 'lg:order-2' : 'lg:order-1'}`}>
               <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
                 <span className="text-[#6156F6]">{t('home.creators.count')}</span> {t('home.creators.title')}
               </h2>
@@ -168,7 +168,7 @@ export const Home = () => {
               </Button>
             </div>
 
-            <div className={`relative h-[400px] sm:h-[500px] lg:h-[600px] ${language === 'ar' ? 'lg:order-1' : ''}`}>
+            <div className={`relative h-[400px] sm:h-[500px] lg:h-[600px] order-1 lg:order-2 ${language === 'ar' ? 'lg:order-1' : 'lg:order-2'}`}>
               {/* Three images with social icons - New Layout */}
               <div className="relative h-full w-full max-w-2xl mx-auto">
                 {/* Top Image - Center with TikTok */}
@@ -421,8 +421,8 @@ export const Home = () => {
             </p>
           </div>
 
-          {/* Steps Navigation */}
-          <div className="flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-10 sm:mb-12 md:mb-16 px-3 sm:px-4">
+          {/* Steps Navigation - Hidden on mobile */}
+          <div className="hidden sm:flex flex-wrap justify-center gap-2 sm:gap-3 md:gap-4 mb-10 sm:mb-12 md:mb-16 px-3 sm:px-4">
             {howItWorksSteps.map((step, index) => (
               <button
                 key={index}
@@ -452,45 +452,62 @@ export const Home = () => {
           {/* Choose creators step content */}
           {activeTab === 1 && (
             <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-[#26C190]/20 animate-fadeIn">
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-                <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : ''}`}>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
-                        2
-                      </div>
-                      <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
-                        {t('home.howItWorks.tab2.title')}
-                      </h3>
+              <div className="space-y-6 sm:space-y-8">
+                {/* Title and Arrows */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
+                      2
                     </div>
-                    <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
-                      <button 
-                        onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                      <button 
-                        onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                    </div>
+                    <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
+                      {t('home.howItWorks.tab2.title')}
+                    </h3>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
-                    {t('home.howItWorks.tab2.description')}
+                  <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
+                    <button 
+                      onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className="relative group max-w-2xl mx-auto">
+                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  <img 
+                    src="/images/How-it-works02-1.jpg" 
+                    alt="Choose creators" 
+                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
+                  {t('home.howItWorks.tab2.description')}
+                </p>
+
+                {/* Pro Tip */}
+                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'راجع بروفايل صانع المحتوى بعناية للتأكد من أن أسلوبه يتناسب مع جمالية علامتك التجارية.' : 'Review the content creator\'s profile carefully to ensure their style matches your brand aesthetic.'}
                   </p>
-                  <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                      <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'راجع بروفايل صانع المحتوى بعناية للتأكد من أن أسلوبه يتناسب مع جمالية علامتك التجارية.' : 'Review the content creator\'s profile carefully to ensure their style matches your brand aesthetic.'}
-                    </p>
-                  </div>
+                </div>
+
+                {/* Button */}
+                <div className="flex justify-center">
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
@@ -498,15 +515,6 @@ export const Home = () => {
                   >
                     {t('home.howItWorks.signUp')}
                   </Button>
-                </div>
-
-                <div className={`relative group ${language === 'ar' ? 'lg:order-1' : ''}`}>
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works02-1.jpg" 
-                    alt="Choose creators" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
                 </div>
               </div>
             </div>
@@ -515,45 +523,62 @@ export const Home = () => {
           {/* Send Product step content */}
           {activeTab === 2 && (
             <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-[#26C190]/20 animate-fadeIn">
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-                <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : ''}`}>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
-                        3
-                      </div>
-                      <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
-                        {t('home.howItWorks.tab3.title')}
-                      </h3>
+              <div className="space-y-6 sm:space-y-8">
+                {/* Title and Arrows */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
+                      3
                     </div>
-                    <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
-                      <button 
-                        onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                      <button 
-                        onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                    </div>
+                    <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
+                      {t('home.howItWorks.tab3.title')}
+                    </h3>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
-                    {t('home.howItWorks.tab3.description')}
+                  <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
+                    <button 
+                      onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className="relative group max-w-2xl mx-auto">
+                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  <img 
+                    src="/images/How-it-works03-1.jpg" 
+                    alt="Send Product" 
+                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
+                  {t('home.howItWorks.tab3.description')}
+                </p>
+
+                {/* Pro Tip */}
+                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتضمين إرشادات المنتج ورسائل العلامة التجارية لمساعدة صناع المحتوى على فهم رؤيتك.' : 'Include product guidelines and brand messaging to help content creators understand your vision.'}
                   </p>
-                  <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                      <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتضمين إرشادات المنتج ورسائل العلامة التجارية لمساعدة صناع المحتوى على فهم رؤيتك.' : 'Include product guidelines and brand messaging to help content creators understand your vision.'}
-                    </p>
-                  </div>
+                </div>
+
+                {/* Button */}
+                <div className="flex justify-center">
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
@@ -561,15 +586,6 @@ export const Home = () => {
                   >
                     {t('home.howItWorks.signUp')}
                   </Button>
-                </div>
-
-                <div className={`relative group ${language === 'ar' ? 'lg:order-1' : ''}`}>
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works03-1.jpg" 
-                    alt="Send Product" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
                 </div>
               </div>
             </div>
@@ -578,45 +594,62 @@ export const Home = () => {
           {/* Pick content step content */}
           {activeTab === 3 && (
             <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-[#26C190]/20 animate-fadeIn">
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-                <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : ''}`}>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
-                        4
-                      </div>
-                      <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
-                        {t('home.howItWorks.tab4.title')}
-                      </h3>
+              <div className="space-y-6 sm:space-y-8">
+                {/* Title and Arrows */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
+                      4
                     </div>
-                    <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
-                      <button 
-                        onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                      <button 
-                        onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                    </div>
+                    <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
+                      {t('home.howItWorks.tab4.title')}
+                    </h3>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
-                    {t('home.howItWorks.tab4.description')}
+                  <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
+                    <button 
+                      onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className="relative group max-w-2xl mx-auto">
+                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  <img 
+                    src="/images/How-it-works04-1.jpg" 
+                    alt="Pick content" 
+                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
+                  {t('home.howItWorks.tab4.description')}
+                </p>
+
+                {/* Pro Tip */}
+                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتحميل إصدارات عالية الجودة واستخدمها عبر جميع قنواتك التسويقية!' : 'Download high-quality versions and use them across all your marketing channels!'}
                   </p>
-                  <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                      <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتحميل إصدارات عالية الجودة واستخدمها عبر جميع قنواتك التسويقية!' : 'Download high-quality versions and use them across all your marketing channels!'}
-                    </p>
-                  </div>
+                </div>
+
+                {/* Button */}
+                <div className="flex justify-center">
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
@@ -624,15 +657,6 @@ export const Home = () => {
                   >
                     {t('home.howItWorks.signUp')}
                   </Button>
-                </div>
-
-                <div className={`relative group ${language === 'ar' ? 'lg:order-1' : ''}`}>
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works04-1.jpg" 
-                    alt="Pick content" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
                 </div>
               </div>
             </div>
@@ -641,45 +665,62 @@ export const Home = () => {
           {/* Default Create a job step */}
           {activeTab === 0 && (
             <div className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 md:p-12 shadow-2xl border border-[#26C190]/20 animate-fadeIn">
-              <div className="grid lg:grid-cols-2 gap-8 sm:gap-10 md:gap-12 items-center">
-                <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : ''}`}>
-                  <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4 mb-3 sm:mb-4">
-                    <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
-                      <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
-                        1
-                      </div>
-                      <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
-                        {t('home.howItWorks.tab1.title')}
-                      </h3>
+              <div className="space-y-6 sm:space-y-8">
+                {/* Title and Arrows */}
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 sm:gap-4">
+                  <div className="flex items-center gap-2 sm:gap-3 md:gap-4 flex-1">
+                    <div className="w-9 h-9 sm:w-10 sm:h-10 md:w-12 md:h-12 rounded-full bg-gradient-to-br from-[#6156F6] to-[#7d74f7] flex items-center justify-center text-white font-bold text-base sm:text-lg md:text-xl shadow-lg flex-shrink-0">
+                      1
                     </div>
-                    <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
-                      <button 
-                        onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                      <button 
-                        onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
-                        className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
-                      >
-                        {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
-                      </button>
-                    </div>
+                    <h3 className="text-lg sm:text-2xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] leading-tight">
+                      {t('home.howItWorks.tab1.title')}
+                    </h3>
                   </div>
-                  <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
-                    {t('home.howItWorks.tab1.description')}
+                  <div className="flex gap-1.5 sm:gap-2 flex-shrink-0 self-end sm:self-auto">
+                    <button 
+                      onClick={() => setActiveTab(activeTab > 0 ? activeTab - 1 : 3)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                    <button 
+                      onClick={() => setActiveTab(activeTab < 3 ? activeTab + 1 : 0)}
+                      className="p-1.5 sm:p-2 md:p-3 rounded-full bg-[#F6E8F8] hover:bg-[#6156F6] hover:text-white transition-all duration-300 hover:scale-110"
+                    >
+                      {language === 'ar' ? <ChevronLeft className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" /> : <ChevronRight className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" />}
+                    </button>
+                  </div>
+                </div>
+
+                {/* Image */}
+                <div className="relative group max-w-2xl mx-auto">
+                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                  <img 
+                    src="/images/How-it-works01-1.jpg" 
+                    alt="Create a job" 
+                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                  />
+                </div>
+
+                {/* Description */}
+                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
+                  {t('home.howItWorks.tab1.description')}
+                </p>
+
+                {/* Pro Tip */}
+                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
+                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'كلما كان وصف الحملة أكثر تفصيلاً، كانت جودة التطبيقات التي ستحصل عليها أفضل.' : 'The more detailed your campaign description, the better quality applications you\'ll receive.'}
                   </p>
-                  <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
-                    <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                      <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                      <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'كلما كان وصف الحملة أكثر تفصيلاً، كانت جودة التطبيقات التي ستحصل عليها أفضل.' : 'The more detailed your campaign description, the better quality applications you\'ll receive.'}
-                    </p>
-                  </div>
+                </div>
+
+                {/* Button */}
+                <div className="flex justify-center">
                   <Button 
                     size="lg" 
                     className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
@@ -687,15 +728,6 @@ export const Home = () => {
                   >
                     {t('home.howItWorks.signUp')}
                   </Button>
-                </div>
-
-                <div className={`relative group ${language === 'ar' ? 'lg:order-1' : ''}`}>
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works01-1.jpg" 
-                    alt="Create a job" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
                 </div>
               </div>
             </div>
@@ -805,5 +837,4 @@ export const Home = () => {
     </div>
   );
 };
-
 export default Home;

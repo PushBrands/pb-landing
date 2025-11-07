@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 export const Ads = () => {
   const { t, language } = useLanguage();
   const [currentTestimonialPage, setCurrentTestimonialPage] = useState(0);
+  const [slideDirection, setSlideDirection] = useState<'left' | 'right'>('right');
 
   const testimonials = [
     {
@@ -49,27 +50,31 @@ export const Ads = () => {
 
   const testimonialsPerPage = 3;
   const totalPages = Math.ceil(testimonials.length / testimonialsPerPage);
+  const totalTestimonials = testimonials.length; // Total individual testimonials for mobile
 
   // Auto-pagination effect
   useEffect(() => {
     const interval = setInterval(() => {
-      setCurrentTestimonialPage((prev) => (prev + 1) % totalPages);
+      setSlideDirection('right');
+      setCurrentTestimonialPage((prev) => (prev + 1) % totalTestimonials);
     }, 5000); // Change page every 5 seconds
 
     return () => clearInterval(interval);
-  }, [totalPages]);
+  }, [totalTestimonials]);
 
   const getCurrentTestimonials = () => {
-    const start = currentTestimonialPage * testimonialsPerPage;
+    const start = Math.floor(currentTestimonialPage / 3) * testimonialsPerPage;
     return testimonials.slice(start, start + testimonialsPerPage);
   };
 
   const nextTestimonialPage = () => {
-    setCurrentTestimonialPage((prev) => (prev + 1) % totalPages);
+    setSlideDirection('right');
+    setCurrentTestimonialPage((prev) => (prev + 1) % totalTestimonials);
   };
 
   const prevTestimonialPage = () => {
-    setCurrentTestimonialPage((prev) => (prev - 1 + totalPages) % totalPages);
+    setSlideDirection('left');
+    setCurrentTestimonialPage((prev) => (prev - 1 + totalTestimonials) % totalTestimonials);
   };
 
   return (
@@ -221,123 +226,183 @@ export const Ads = () => {
       </section>
 
       {/* Examples Carousel */}
-      <section className="py-12 sm:py-16 md:py-24 px-4 sm:px-6 lg:px-8 bg-[#F6E8F8]">
-        <div className="container mx-auto max-w-7xl">
-          <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] mb-8 sm:mb-12 text-center px-4">
-            {t('home.examples.title')}
-          </h2>
+      <section className="py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8 bg-gradient-to-b from-[#F6E8F8] to-white relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-10 left-10 w-72 h-72 bg-[#6156F6]/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-10 right-10 w-96 h-96 bg-[#26C190]/5 rounded-full blur-3xl"></div>
+        
+        <div className="container mx-auto max-w-7xl relative z-10">
+          <div className="text-center mb-6 sm:mb-8">
+            <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] mb-3 sm:mb-4 px-4">
+              {t('home.examples.title')}
+            </h2>
+            <p className="text-sm sm:text-base text-[#434E4E] max-w-2xl mx-auto">
+              {language === 'ar' ? 'شاهد أمثلة حقيقية من محتوى صناع المحتوى لدينا' : 'Watch real examples from our content creators'}
+            </p>
+          </div>
 
-          <div className="relative">
-            {/* Horizontal Scroll Container with hidden scrollbar */}
-            <div className="overflow-x-auto pb-6 sm:pb-8 -mx-4 px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-              <style>{`
-                .hide-scrollbar::-webkit-scrollbar {
-                  display: none;
-                }
-              `}</style>
-              <div className="flex gap-4 sm:gap-6 hide-scrollbar" style={{ width: 'max-content' }}>
-                {/* Video 1 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377305?h=b9bf82551c&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 1"
-                    />
+          {/* Staggered Grid Layout - 8 Videos */}
+          <div className="max-w-6xl mx-auto">
+            {/* Mobile: 2 columns, Tablet: 4 columns, Desktop: 4 columns with subtle stagger */}
+            <div className="grid grid-cols-2 sm:grid-cols-4" style={{ gap: '20px' }}>
+              {/* Video 1 */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377305?h=b9bf82551c&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 1"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Video 2 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377375?h=da84e70e01&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 2"
-                    />
+              {/* Video 2 - Subtle down */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-3">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377375?h=da84e70e01&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 2"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Video 3 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377526?h=5ec1d20c75&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 3"
-                    />
+              {/* Video 3 - Subtle up */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:-mt-2">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377526?h=5ec1d20c75&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 3"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Video 4 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377688?h=21fdccf4d7&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 4"
-                    />
+              {/* Video 4 - Subtle down */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-4">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377688?h=21fdccf4d7&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 4"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Video 5 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377641?h=4a615e7334&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 5"
-                    />
+              {/* Video 5 - Subtle down */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-2">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377641?h=4a615e7334&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 5"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Video 6 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377438?h=bebdb060b4&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 6"
-                    />
+              {/* Video 6 */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377438?h=bebdb060b4&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 6"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
+              </div>
 
-                {/* Video 7 */}
-                <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
-                  <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377210?h=787d7c21f5&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
-                      className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 7"
-                    />
+              {/* Video 7 - Subtle up */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:-mt-3">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377210?h=787d7c21f5&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 7"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Video 8 - Subtle down */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-3">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <iframe 
+                        src="https://player.vimeo.com/video/1069377375?h=da84e70e01&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
+                        frameBorder="0"
+                        allow="autoplay; fullscreen"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        title="UGC Video 8"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
+          </div>
 
-            {/* Scroll indicator */}
-            <div className="text-center mt-4 sm:mt-6">
-              <p className="text-xs sm:text-sm text-gray-500 flex items-center justify-center gap-2">
-                <svg className={`w-4 h-4 sm:w-5 sm:h-5 animate-pulse ${language === 'ar' ? 'rotate-180' : ''}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
-                </svg>
-                {language === 'ar' ? 'مرر لرؤية المزيد' : 'Scroll to see more'}
-              </p>
-            </div>
+          {/* Call to Action */}
+          <div className="text-center mt-8 sm:mt-10">
+            <p className="text-sm sm:text-base text-[#434E4E] mb-3 sm:mb-4">
+              {language === 'ar' ? 'جاهز للبدء؟' : 'Ready to get started?'}
+            </p>
+            <Button 
+              size="lg" 
+              className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:from-[#4f45d8] hover:to-[#6b61e6] hover:scale-105 rounded-full px-6 sm:px-10 py-5 sm:py-6 text-sm sm:text-base font-semibold transition-all duration-300 shadow-lg hover:shadow-xl"
+              onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
+            >
+              {language === 'ar' ? 'ابدأ الآن' : 'Start Now'}
+            </Button>
           </div>
         </div>
       </section>
@@ -400,12 +465,52 @@ export const Ads = () => {
           </div>
 
           {/* Testimonials Grid */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 mb-8 sm:mb-12">
-            {getCurrentTestimonials().map((testimonial, index) => (
+          <div className="mb-8 sm:mb-12">
+            {/* Mobile: Single testimonial with slide animation */}
+            <div className="md:hidden max-w-md mx-auto overflow-hidden">
               <div 
-                key={index}
-                className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 space-y-4 hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+                key={currentTestimonialPage}
+                className={`bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 space-y-4 animate-slideIn`}
+                style={{
+                  animation: `slideIn${slideDirection === 'right' ? 'Right' : 'Left'} 0.5s ease-out`
+                }}
               >
+                {/* Quote Icon */}
+                <div className="flex justify-start mb-2">
+                  <svg className="w-8 h-8 text-[#6156F6] opacity-50" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M6 17h3l2-4V7H5v6h3zm8 0h3l2-4V7h-6v6h3z"/>
+                  </svg>
+                </div>
+                
+                {/* Testimonial Text */}
+                <p className={`text-sm sm:text-base text-[#434E4E] leading-relaxed min-h-[100px] sm:min-h-[120px] ${language === 'ar' ? 'text-right' : 'text-left'}`}>
+                  {testimonials[currentTestimonialPage].quote}
+                </p>
+                
+                {/* Author Info */}
+                <div className={`flex items-center gap-3 sm:gap-4 pt-4 border-t border-gray-200 ${language === 'ar' ? 'flex-row-reverse' : ''}`}>
+                  <div className="w-12 h-12 sm:w-14 sm:h-14 rounded-full bg-gray-100 flex items-center justify-center p-2 overflow-hidden">
+                    <img 
+                      src={testimonials[currentTestimonialPage].logo} 
+                      alt={testimonials[currentTestimonialPage].company} 
+                      className="w-full h-full object-contain"
+                    />
+                  </div>
+                  <div className={language === 'ar' ? 'text-right' : ''}>
+                    <p className="font-semibold text-[#1d1d1d] text-sm sm:text-base">{testimonials[currentTestimonialPage].name}</p>
+                    <p className="text-xs sm:text-sm text-[#434E4E]">{testimonials[currentTestimonialPage].company}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* Tablet & Desktop: Multiple testimonials grid */}
+            <div className="hidden md:grid md:grid-cols-2 lg:grid-cols-3 md:gap-6 lg:gap-8">
+              {getCurrentTestimonials().map((testimonial, index) => (
+                <div 
+                  key={index}
+                  className="bg-white rounded-2xl sm:rounded-3xl p-6 sm:p-8 space-y-4 hover:shadow-2xl transition-all duration-300 hover:scale-105 group"
+                >
                 {/* Quote Icon */}
                 <div className="flex justify-start mb-2">
                   <svg className="w-8 h-8 text-[#6156F6] opacity-50 group-hover:opacity-100 transition-opacity" fill="currentColor" viewBox="0 0 24 24">
@@ -431,10 +536,35 @@ export const Ads = () => {
                     <p className="font-semibold text-[#1d1d1d] text-sm sm:text-base">{testimonial.name}</p>
                     <p className="text-xs sm:text-sm text-[#434E4E]">{testimonial.company}</p>
                   </div>
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* Add custom animation styles */}
+          <style>{`
+            @keyframes slideInRight {
+              from {
+                opacity: 0;
+                transform: translateX(100%);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+            @keyframes slideInLeft {
+              from {
+                opacity: 0;
+                transform: translateX(-100%);
+              }
+              to {
+                opacity: 1;
+                transform: translateX(0);
+              }
+            }
+          `}</style>
 
           {/* Pagination Controls */}
           <div className="flex items-center justify-center gap-4 sm:gap-6">
@@ -449,18 +579,42 @@ export const Ads = () => {
 
             {/* Page Indicators */}
             <div className="flex gap-2 sm:gap-3">
-              {Array.from({ length: totalPages }).map((_, index) => (
-                <button
-                  key={index}
-                  onClick={() => setCurrentTestimonialPage(index)}
-                  className={`transition-all duration-300 rounded-full ${
-                    currentTestimonialPage === index
-                      ? 'w-8 sm:w-10 h-2 sm:h-2.5 bg-white'
-                      : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/40 hover:bg-white/60'
-                  }`}
-                  aria-label={`Go to page ${index + 1}`}
-                />
-              ))}
+              {/* Mobile: Show all 6 testimonials */}
+              <div className="flex gap-2 sm:gap-3 md:hidden">
+                {testimonials.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setSlideDirection(index > currentTestimonialPage ? 'right' : 'left');
+                      setCurrentTestimonialPage(index);
+                    }}
+                    className={`transition-all duration-300 rounded-full ${
+                      currentTestimonialPage === index
+                        ? 'w-8 sm:w-10 h-2 sm:h-2.5 bg-white'
+                        : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/40 hover:bg-white/60'
+                    }`}
+                    aria-label={`Go to testimonial ${index + 1}`}
+                  />
+                ))}
+              </div>
+              {/* Tablet & Desktop: Show pages of 3 */}
+              <div className="hidden md:flex gap-2 sm:gap-3">
+                {Array.from({ length: totalPages }).map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => {
+                      setSlideDirection('right');
+                      setCurrentTestimonialPage(index * 3);
+                    }}
+                    className={`transition-all duration-300 rounded-full ${
+                      Math.floor(currentTestimonialPage / 3) === index
+                        ? 'w-8 sm:w-10 h-2 sm:h-2.5 bg-white'
+                        : 'w-2 sm:w-2.5 h-2 sm:h-2.5 bg-white/40 hover:bg-white/60'
+                    }`}
+                    aria-label={`Go to page ${index + 1}`}
+                  />
+                ))}
+              </div>
             </div>
 
             {/* Next Button */}
