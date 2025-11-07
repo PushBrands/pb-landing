@@ -1,12 +1,9 @@
 {
-  "trailingSlash": false,
-  "redirects": [
-    {
-      "source": "/:path+/",
-      "destination": "/:path+"
-    }
-  ],
   "rewrites": [
+    {
+      "source": "/(en|ar)/:path*",
+      "destination": "/index.html"
+    },
     {
       "source": "/:path*",
       "destination": "/index.html"
