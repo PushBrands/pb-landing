@@ -242,13 +242,14 @@ export const Ads = () => {
             </p>
           </div>
 
-          {/* Staggered Grid Layout - 8 Videos */}
-          <div className="max-w-6xl mx-auto">
-            {/* Mobile: 2 columns, Tablet: 4 columns, Desktop: 4 columns with subtle stagger */}
-            <div className="grid grid-cols-2 sm:grid-cols-4" style={{ gap: '20px' }}>
+          {/* Staggered Grid Layout - 12 Videos */}
+          <div className="max-w-7xl mx-auto">
+            {/* Mobile: 2 columns, Tablet & Desktop: 6 columns */}
+            <div className="grid grid-cols-2 sm:grid-cols-6 gap-3 sm:gap-6">
+              {/* Top Row - 6 Videos */}
               {/* Video 1 */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl sm:max-h-[520px]">
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
@@ -267,7 +268,7 @@ export const Ads = () => {
 
               {/* Video 2 - Subtle down */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-3">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
@@ -286,7 +287,7 @@ export const Ads = () => {
 
               {/* Video 3 - Subtle up */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:-mt-2">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
@@ -305,7 +306,7 @@ export const Ads = () => {
 
               {/* Video 4 - Subtle down */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-4">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
@@ -324,8 +325,8 @@ export const Ads = () => {
 
               {/* Video 5 - Subtle down */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-2">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
                         src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%B9%D9%85%D8%B1_ugc_%D9%85%D8%AA%D8%AC%D8%B1_asrarco_dw7uwp%20(720p).mp4"
@@ -343,8 +344,8 @@ export const Ads = () => {
 
               {/* Video 6 */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
                         src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_ugc_%D9%84%D8%A7%D9%86%D9%83%D9%88%D9%85_%D8%A7%D9%8A%D8%AF%D9%88%D9%84_h5jiob%20(720p).mp4"
@@ -360,10 +361,11 @@ export const Ads = () => {
                 </div>
               </div>
 
+              {/* Bottom Row - 6 Videos */}
               {/* Video 7 - Subtle up */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:-mt-3">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
-                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
                         src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_ugc_%D9%85%D8%AE%D8%AF%D8%A9_%D8%BA%D9%8A%D9%85_pcasfz_v1%20(720p).mp4"
@@ -381,11 +383,87 @@ export const Ads = () => {
 
               {/* Video 8 - Subtle down */}
               <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-3">
-                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/Abeer%20UGC%2001.mp4"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Video 9 - NEW */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:-mt-2">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
                       <video
-                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/landing_page_video%20(1080p).mp4"
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88%20UGC%20%D8%B9%D8%A8%D8%A7%D9%8A%D8%A9%20%D9%83%D8%A7%D8%AC%D9%88%D9%84.mov"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Video 10 - NEW */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-4">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%B9%D9%85%D8%A7%D8%B1.mp4"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Video 11 - NEW */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10 sm:mt-2">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/ugc7.mp4"
+                        className="absolute top-0 left-0 w-full h-full object-cover"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Video 12 - NEW */}
+              <div className="group transform transition-all duration-500 hover:-translate-y-2 hover:z-10">
+                <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '100%' }}>
+                  <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
+                    <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88%20UGC%20%D8%AC%D9%87%D8%A7%D8%B2%20%D8%AA%D8%B9%D8%B7%D9%8A%D8%B1%20%D8%A7%D9%84%D8%AC%D9%88.mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
                         autoPlay
                         loop
