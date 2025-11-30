@@ -94,14 +94,13 @@ export const Ads = () => {
           {/* Video Container */}
           <div className="max-w-5xl mx-auto mb-8 sm:mb-12">
             <div className="relative rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl" style={{ padding: '56.25% 0 0 0', position: 'relative' }}>
-              <iframe 
-                src="https://player.vimeo.com/video/1069377836?h=aa9d2d6439&badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1&loop=1&muted=0&controls=1&title=0&byline=0&portrait=0" 
-                frameBorder="0"
-                allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-                allowFullScreen
-                referrerPolicy="strict-origin-when-cross-origin"
+              <video
+                src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/landing_page_video%20(1080p).mp4"
                 style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%' }}
-                title="Landing Page Video"
+                controls
+                autoPlay
+                loop
+                playsInline
               />
             </div>
           </div>
@@ -123,18 +122,20 @@ export const Ads = () => {
 
       {/* Client Logos Carousel */}
       <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white">
-        <div className="container mx-auto max-w-7xl mb-8 sm:mb-12">
-          <h2 className="text-2xl sm:text-3xl md:text-3xl font-bold text-center text-[#1d1d1d] mb-4 sm:mb-6">
-            {t('home.brands.title')} <span className="text-[#6156F6]">{t('home.brands.count')}</span>
-          </h2>
-          <p className="text-base sm:text-lg md:text-xl text-center text-[#434E4E] max-w-3xl mx-auto">
-            {t('home.brands.subtitle')}
-          </p>
+        <div className="container mx-auto max-w-7xl">
+          <div className="text-center mb-8 sm:mb-12 space-y-3 sm:space-y-4">
+            <h2 className="text-2xl sm:text-3xl md:text-3xl lg:text-4xl font-bold text-[#1d1d1d] px-4">
+              {t('home.brands.title')} <span className="text-[#6156F6]">{t('home.brands.count')}</span>
+            </h2>
+            <p className="text-sm sm:text-base md:text-lg text-[#434E4E] max-w-2xl mx-auto px-4">
+              {t('home.brands.subtitle')}
+            </p>
+          </div>
         </div>
 
         <div className="container mx-auto max-w-7xl space-y-6 sm:space-y-8">
           {/* First Carousel - Right to Left - 8 Logos */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden" dir="ltr">
             {/* Gradient overlays for fade effect */}
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
@@ -163,7 +164,7 @@ export const Ads = () => {
           </div>
 
           {/* Second Carousel - Left to Right (Reverse) - Other 8 Logos */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden" dir="ltr">
             {/* Gradient overlays for fade effect */}
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
@@ -250,12 +251,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377305?h=b9bf82551c&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/hawazin_ugc_btb91r_v1%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 1"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -268,12 +270,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377375?h=da84e70e01&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/ugc3_qmrsdf%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 2"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -286,12 +289,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377526?h=5ec1d20c75&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85_ugc_%D9%85%D9%86%D8%B5%D8%A9_%D8%A7%D8%B1%D9%8A%D8%A8_01_xisq2r_v1%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 3"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -304,12 +308,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377688?h=21fdccf4d7&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86_qmnyav_v1%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 4"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -322,12 +327,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377641?h=4a615e7334&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%B9%D9%85%D8%B1_ugc_%D9%85%D8%AA%D8%AC%D8%B1_asrarco_dw7uwp%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 5"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -340,12 +346,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377438?h=bebdb060b4&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_ugc_%D9%84%D8%A7%D9%86%D9%83%D9%88%D9%85_%D8%A7%D9%8A%D8%AF%D9%88%D9%84_h5jiob%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 6"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -358,12 +365,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#26C190] to-[#20a077] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377210?h=787d7c21f5&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_ugc_%D9%85%D8%AE%D8%AF%D8%A9_%D8%BA%D9%8A%D9%85_pcasfz_v1%20(720p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 7"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
@@ -376,12 +384,13 @@ export const Ads = () => {
                 <div className="relative rounded-xl sm:rounded-2xl overflow-hidden aspect-[9/16] shadow-lg hover:shadow-2xl" style={{ maxHeight: '476px' }}>
                   <div className="absolute inset-0 bg-gradient-to-br from-[#6156F6] to-[#7d74f7] p-[2px]">
                     <div className="bg-[#1d1d1d] rounded-[10px] sm:rounded-xl overflow-hidden h-full w-full relative">
-                      <iframe 
-                        src="https://player.vimeo.com/video/1069377375?h=da84e70e01&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                        frameBorder="0"
-                        allow="autoplay; fullscreen"
+                      <video
+                        src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/landing_page_video%20(1080p).mp4"
                         className="absolute top-0 left-0 w-full h-full object-cover"
-                        title="UGC Video 8"
+                        autoPlay
+                        loop
+                        muted
+                        playsInline
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                     </div>

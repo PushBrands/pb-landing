@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useRef } from 'react';
 import { useLanguage } from '@/contexts/LanguageContext';
 import { Button } from '@/components/ui/button';
 import { Play, TrendingUp, ShoppingCart, Gamepad2, Megaphone, ChevronLeft, ChevronRight } from 'lucide-react';
@@ -7,6 +7,7 @@ import { Footer } from '@/components/Footer';
 export const Home = () => {
   const { t, language } = useLanguage();
   const [activeTab, setActiveTab] = useState(0);
+  const scrollContainerRef = useRef<HTMLDivElement>(null);
 
   const howItWorksSteps = [
     { title: t('home.howItWorks.tab1') },
@@ -14,6 +15,18 @@ export const Home = () => {
     { title: t('home.howItWorks.tab3') },
     { title: t('home.howItWorks.tab4') },
   ];
+
+  const scrollLeft = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: -400, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRight = () => {
+    if (scrollContainerRef.current) {
+      scrollContainerRef.current.scrollBy({ left: 400, behavior: 'smooth' });
+    }
+  };
 
   return (
     <div className="min-h-screen">
@@ -89,7 +102,7 @@ export const Home = () => {
       <section className="py-8 sm:py-12 px-4 sm:px-6 lg:px-8 bg-white">
         <div className="container mx-auto max-w-7xl space-y-6 sm:space-y-8">
           {/* First Carousel - Right to Left - 8 Logos */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden" dir="ltr">
             {/* Gradient overlays for fade effect */}
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
@@ -118,7 +131,7 @@ export const Home = () => {
           </div>
 
           {/* Second Carousel - Left to Right (Reverse) - Other 8 Logos */}
-          <div className="relative overflow-hidden">
+          <div className="relative overflow-hidden" dir="ltr">
             {/* Gradient overlays for fade effect */}
             <div className="absolute left-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-r from-white to-transparent z-10"></div>
             <div className="absolute right-0 top-0 bottom-0 w-12 sm:w-20 bg-gradient-to-l from-white to-transparent z-10"></div>
@@ -229,8 +242,25 @@ export const Home = () => {
           </h2>
 
           <div className="relative">
+            {/* Navigation Arrows - Hidden on mobile, visible on desktop */}
+            <button
+              onClick={scrollLeft}
+              className={`hidden lg:flex absolute ${language === 'ar' ? 'right-0' : 'left-0'} top-1/2 -translate-y-1/2 -translate-x-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-xl items-center justify-center hover:bg-gray-100 transition-all hover:scale-110`}
+              aria-label="Scroll left"
+            >
+              {language === 'ar' ? <ChevronRight className="w-6 h-6 text-[#6156F6]" /> : <ChevronLeft className="w-6 h-6 text-[#6156F6]" />}
+            </button>
+            
+            <button
+              onClick={scrollRight}
+              className={`hidden lg:flex absolute ${language === 'ar' ? 'left-0' : 'right-0'} top-1/2 -translate-y-1/2 translate-x-1/2 z-20 w-12 h-12 bg-white rounded-full shadow-xl items-center justify-center hover:bg-gray-100 transition-all hover:scale-110`}
+              aria-label="Scroll right"
+            >
+              {language === 'ar' ? <ChevronLeft className="w-6 h-6 text-[#6156F6]" /> : <ChevronRight className="w-6 h-6 text-[#6156F6]" />}
+            </button>
+
             {/* Horizontal Scroll Container with hidden scrollbar */}
-            <div className="overflow-x-auto pb-6 sm:pb-8 -mx-4 px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+            <div ref={scrollContainerRef} className="overflow-x-auto pb-6 sm:pb-8 -mx-4 px-4" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
               <style>{`
                 .hide-scrollbar::-webkit-scrollbar {
                   display: none;
@@ -240,12 +270,13 @@ export const Home = () => {
                 {/* Video 1 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377305?h=b9bf82551c&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/hawazin_ugc_btb91r_v1%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 1"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -253,12 +284,13 @@ export const Home = () => {
                 {/* Video 2 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377375?h=da84e70e01&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/ugc3_qmrsdf%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 2"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -266,12 +298,13 @@ export const Home = () => {
                 {/* Video 3 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377526?h=5ec1d20c75&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%A7%D8%A8%D8%B1%D8%A7%D9%87%D9%8A%D9%85_ugc_%D9%85%D9%86%D8%B5%D8%A9_%D8%A7%D8%B1%D9%8A%D8%A8_01_xisq2r_v1%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 3"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -279,12 +312,13 @@ export const Home = () => {
                 {/* Video 4 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377688?h=21fdccf4d7&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%B9%D8%A8%D8%AF%D8%A7%D9%84%D8%B1%D8%AD%D9%85%D9%86_qmnyav_v1%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 4"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -292,12 +326,13 @@ export const Home = () => {
                 {/* Video 5 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377641?h=4a615e7334&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D8%B9%D9%85%D8%B1_ugc_%D9%85%D8%AA%D8%AC%D8%B1_asrarco_dw7uwp%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 5"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -305,12 +340,13 @@ export const Home = () => {
                 {/* Video 6 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377438?h=bebdb060b4&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_ugc_%D9%84%D8%A7%D9%86%D9%83%D9%88%D9%85_%D8%A7%D9%8A%D8%AF%D9%88%D9%84_h5jiob%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 6"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -318,12 +354,13 @@ export const Home = () => {
                 {/* Video 7 */}
                 <div className="w-[240px] sm:w-[280px] md:w-[320px] flex-shrink-0 group">
                   <div className="bg-[#1d1d1d] rounded-2xl sm:rounded-3xl overflow-hidden h-[420px] sm:h-[480px] md:h-[540px] relative shadow-xl hover:shadow-2xl transition-all duration-300 hover:scale-105">
-                    <iframe 
-                      src="https://player.vimeo.com/video/1069377210?h=787d7c21f5&autoplay=1&loop=1&muted=1&controls=0&title=0&byline=0&portrait=0&background=1" 
-                      frameBorder="0"
-                      allow="autoplay; fullscreen"
+                    <video
+                      src="https://pushbrands-test.s3.eu-north-1.amazonaws.com/videos/%D9%81%D9%8A%D8%AF%D9%8A%D9%88_ugc_%D9%85%D8%AE%D8%AF%D8%A9_%D8%BA%D9%8A%D9%85_pcasfz_v1%20(720p).mp4"
                       className="absolute top-0 left-0 w-full h-full object-cover"
-                      title="UGC Video 7"
+                      autoPlay
+                      loop
+                      muted
+                      playsInline
                     />
                   </div>
                 </div>
@@ -479,42 +516,48 @@ export const Home = () => {
                   </div>
                 </div>
 
-                {/* Image */}
-                <div className="relative group max-w-2xl mx-auto">
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works02-1.jpg" 
-                    alt="Choose creators" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
-                  {t('home.howItWorks.tab2.description')}
-                </p>
-
-                {/* Pro Tip */}
-                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                {/* Image and Content Grid */}
+                <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 items-center ${language === 'ar' ? '' : ''}`}>
+                  {/* Image */}
+                  <div className={`relative group ${language === 'ar' ? 'lg:order-1' : 'lg:order-1'}`}>
+                    <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <img 
+                      src="/images/How-it-works02-1.jpg" 
+                      alt="Choose creators" 
+                      className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'راجع بروفايل صانع المحتوى بعناية للتأكد من أن أسلوبه يتناسب مع جمالية علامتك التجارية.' : 'Review the content creator\'s profile carefully to ensure their style matches your brand aesthetic.'}
-                  </p>
-                </div>
 
-                {/* Button */}
-                <div className="flex justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
-                    onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
-                  >
-                    {t('home.howItWorks.signUp')}
-                  </Button>
+                  {/* Content */}
+                  <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : 'lg:order-2'}`}>
+                    {/* Description */}
+                    <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
+                      {t('home.howItWorks.tab2.description')}
+                    </p>
+
+                    {/* Pro Tip */}
+                    <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                        <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'راجع بروفايل صانع المحتوى بعناية للتأكد من أن أسلوبه يتناسب مع جمالية علامتك التجارية.' : 'Review the content creator\'s profile carefully to ensure their style matches your brand aesthetic.'}
+                      </p>
+                    </div>
+
+                    {/* Button */}
+                    <div>
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
+                        onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
+                      >
+                        {t('home.howItWorks.signUp')}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -550,42 +593,48 @@ export const Home = () => {
                   </div>
                 </div>
 
-                {/* Image */}
-                <div className="relative group max-w-2xl mx-auto">
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works03-1.jpg" 
-                    alt="Send Product" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
-                  {t('home.howItWorks.tab3.description')}
-                </p>
-
-                {/* Pro Tip */}
-                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                {/* Image and Content Grid */}
+                <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 items-center ${language === 'ar' ? '' : ''}`}>
+                  {/* Image */}
+                  <div className={`relative group ${language === 'ar' ? 'lg:order-1' : 'lg:order-1'}`}>
+                    <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <img 
+                      src="/images/How-it-works03-1.jpg" 
+                      alt="Send Product" 
+                      className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتضمين إرشادات المنتج ورسائل العلامة التجارية لمساعدة صناع المحتوى على فهم رؤيتك.' : 'Include product guidelines and brand messaging to help content creators understand your vision.'}
-                  </p>
-                </div>
 
-                {/* Button */}
-                <div className="flex justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
-                    onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
-                  >
-                    {t('home.howItWorks.signUp')}
-                  </Button>
+                  {/* Content */}
+                  <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : 'lg:order-2'}`}>
+                    {/* Description */}
+                    <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
+                      {t('home.howItWorks.tab3.description')}
+                    </p>
+
+                    {/* Pro Tip */}
+                    <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                        <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتضمين إرشادات المنتج ورسائل العلامة التجارية لمساعدة صناع المحتوى على فهم رؤيتك.' : 'Include product guidelines and brand messaging to help content creators understand your vision.'}
+                      </p>
+                    </div>
+
+                    {/* Button */}
+                    <div>
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
+                        onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
+                      >
+                        {t('home.howItWorks.signUp')}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -621,42 +670,48 @@ export const Home = () => {
                   </div>
                 </div>
 
-                {/* Image */}
-                <div className="relative group max-w-2xl mx-auto">
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works04-1.jpg" 
-                    alt="Pick content" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
-                  {t('home.howItWorks.tab4.description')}
-                </p>
-
-                {/* Pro Tip */}
-                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                    <svg className="w-3 h-3 sm:w-4 sm:w-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                {/* Image and Content Grid */}
+                <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 items-center ${language === 'ar' ? '' : ''}`}>
+                  {/* Image */}
+                  <div className={`relative group ${language === 'ar' ? 'lg:order-1' : 'lg:order-1'}`}>
+                    <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <img 
+                      src="/images/How-it-works04-1.jpg" 
+                      alt="Pick content" 
+                      className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتحميل إصدارات عالية الجودة واستخدمها عبر جميع قنواتك التسويقية!' : 'Download high-quality versions and use them across all your marketing channels!'}
-                  </p>
-                </div>
 
-                {/* Button */}
-                <div className="flex justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
-                    onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
-                  >
-                    {t('home.howItWorks.signUp')}
-                  </Button>
+                  {/* Content */}
+                  <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : 'lg:order-2'}`}>
+                    {/* Description */}
+                    <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
+                      {t('home.howItWorks.tab4.description')}
+                    </p>
+
+                    {/* Pro Tip */}
+                    <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                        <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'قم بتحميل إصدارات عالية الجودة واستخدمها عبر جميع قنواتك التسويقية!' : 'Download high-quality versions and use them across all your marketing channels!'}
+                      </p>
+                    </div>
+
+                    {/* Button */}
+                    <div>
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
+                        onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
+                      >
+                        {t('home.howItWorks.signUp')}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
@@ -692,42 +747,48 @@ export const Home = () => {
                   </div>
                 </div>
 
-                {/* Image */}
-                <div className="relative group max-w-2xl mx-auto">
-                  <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
-                  <img 
-                    src="/images/How-it-works01-1.jpg" 
-                    alt="Create a job" 
-                    className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
-                  />
-                </div>
-
-                {/* Description */}
-                <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed text-center max-w-3xl mx-auto">
-                  {t('home.howItWorks.tab1.description')}
-                </p>
-
-                {/* Pro Tip */}
-                <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl max-w-3xl mx-auto">
-                  <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
-                    <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
+                {/* Image and Content Grid */}
+                <div className={`grid lg:grid-cols-2 gap-6 sm:gap-8 items-center ${language === 'ar' ? '' : ''}`}>
+                  {/* Image */}
+                  <div className={`relative group ${language === 'ar' ? 'lg:order-1' : 'lg:order-1'}`}>
+                    <div className="absolute -inset-2 sm:-inset-4 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-2xl sm:rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
+                    <img 
+                      src="/images/How-it-works01-1.jpg" 
+                      alt="Create a job" 
+                      className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl transform group-hover:scale-105 transition-transform duration-300"
+                    />
                   </div>
-                  <p className="text-xs sm:text-sm text-[#1d1d1d]">
-                    <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'كلما كان وصف الحملة أكثر تفصيلاً، كانت جودة التطبيقات التي ستحصل عليها أفضل.' : 'The more detailed your campaign description, the better quality applications you\'ll receive.'}
-                  </p>
-                </div>
 
-                {/* Button */}
-                <div className="flex justify-center">
-                  <Button 
-                    size="lg" 
-                    className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
-                    onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
-                  >
-                    {t('home.howItWorks.signUp')}
-                  </Button>
+                  {/* Content */}
+                  <div className={`space-y-4 sm:space-y-6 ${language === 'ar' ? 'lg:order-2' : 'lg:order-2'}`}>
+                    {/* Description */}
+                    <p className="text-sm sm:text-base md:text-lg text-[#434E4E] leading-relaxed">
+                      {t('home.howItWorks.tab1.description')}
+                    </p>
+
+                    {/* Pro Tip */}
+                    <div className="flex items-start gap-2 sm:gap-3 bg-[#F6E8F8] p-3 sm:p-4 rounded-xl">
+                      <div className="w-5 h-5 sm:w-6 sm:h-6 rounded-full bg-[#26C190] flex items-center justify-center flex-shrink-0 mt-0.5 sm:mt-1">
+                        <svg className="w-3 h-3 sm:w-4 sm:h-4 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                        </svg>
+                      </div>
+                      <p className="text-xs sm:text-sm text-[#1d1d1d]">
+                        <strong>{language === 'ar' ? 'نصيحة محترف:' : 'Pro Tip:'}</strong> {language === 'ar' ? 'كلما كان وصف الحملة أكثر تفصيلاً، كانت جودة التطبيقات التي ستحصل عليها أفضل.' : 'The more detailed your campaign description, the better quality applications you\'ll receive.'}
+                      </p>
+                    </div>
+
+                    {/* Button */}
+                    <div>
+                      <Button 
+                        size="lg" 
+                        className="bg-gradient-to-r from-[#6156F6] to-[#7d74f7] text-white hover:shadow-xl hover:scale-105 rounded-full px-6 sm:px-8 py-5 sm:py-6 transition-all duration-300 w-full sm:w-auto text-sm sm:text-base"
+                        onClick={() => window.location.href = 'https://app.pushbrands.app/register/brand'}
+                      >
+                        {t('home.howItWorks.signUp')}
+                      </Button>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>

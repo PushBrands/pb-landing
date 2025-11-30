@@ -55,7 +55,12 @@ export const Creators = () => {
           <div className="space-y-16 sm:space-y-20 md:space-y-24">
             {/* Step 1 - Select Campaign */}
             <div className={`grid lg:grid-cols-2 gap-8 sm:gap-12 items-center ${language === 'ar' ? 'lg:grid-flow-dense' : ''}`}>
-              <div className={`relative group ${language === 'ar' ? 'lg:col-start-2' : ''}`}>
+              <div className={`space-y-3 sm:space-y-4 order-1 ${language === 'ar' ? 'text-right lg:col-start-1' : ''}`}>
+                <p className="text-[#6156F6] font-semibold text-sm sm:text-base">{t('how.step1')}</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1d1d1d]">{t('how.step1.title')}</h3>
+                <p className="text-base sm:text-lg text-[#434E4E] leading-relaxed">{t('how.step1.description')}</p>
+              </div>
+              <div className={`relative group order-2 ${language === 'ar' ? 'lg:col-start-2' : ''}`}>
                 <div className="absolute -inset-2 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
                 <img 
                   src="/images/creator image/select-campaign-1.png" 
@@ -63,21 +68,16 @@ export const Creators = () => {
                   className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl"
                 />
               </div>
-              <div className={`space-y-3 sm:space-y-4 ${language === 'ar' ? 'text-right lg:col-start-1' : ''}`}>
-                <p className="text-[#6156F6] font-semibold text-sm sm:text-base">{t('how.step1')}</p>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1d1d1d]">{t('how.step1.title')}</h3>
-                <p className="text-base sm:text-lg text-[#434E4E] leading-relaxed">{t('how.step1.description')}</p>
-              </div>
             </div>
 
             {/* Step 2 - Create Content */}
             <div className={`grid lg:grid-cols-2 gap-8 sm:gap-12 items-center ${language === 'ar' ? 'lg:grid-flow-dense' : ''}`}>
-              <div className={`space-y-3 sm:space-y-4 ${language === 'ar' ? 'text-right lg:col-start-2' : ''}`}>
+              <div className={`space-y-3 sm:space-y-4 order-1 ${language === 'ar' ? 'text-right lg:col-start-2' : ''}`}>
                 <p className="text-[#6156F6] font-semibold text-sm sm:text-base">{t('how.step2')}</p>
                 <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1d1d1d]">{t('how.step2.title')}</h3>
                 <p className="text-base sm:text-lg text-[#434E4E] leading-relaxed">{t('how.step2.description')}</p>
               </div>
-              <div className={`relative group ${language === 'ar' ? 'lg:col-start-1' : ''}`}>
+              <div className={`relative group order-2 ${language === 'ar' ? 'lg:col-start-1' : ''}`}>
                 <div className="absolute -inset-2 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
                 <img 
                   src="/images/creator image/content-creation-1-1024x827.png" 
@@ -89,18 +89,18 @@ export const Creators = () => {
 
             {/* Step 3 - Get Paid */}
             <div className={`grid lg:grid-cols-2 gap-8 sm:gap-12 items-center ${language === 'ar' ? 'lg:grid-flow-dense' : ''}`}>
-              <div className={`relative group ${language === 'ar' ? 'lg:col-start-2' : ''}`}>
+              <div className={`space-y-3 sm:space-y-4 order-1 ${language === 'ar' ? 'text-right lg:col-start-1' : ''}`}>
+                <p className="text-[#6156F6] font-semibold text-sm sm:text-base">{t('how.step3')}</p>
+                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1d1d1d]">{t('how.step3.title')}</h3>
+                <p className="text-base sm:text-lg text-[#434E4E] leading-relaxed">{t('how.step3.description')}</p>
+              </div>
+              <div className={`relative group order-2 ${language === 'ar' ? 'lg:col-start-2' : ''}`}>
                 <div className="absolute -inset-2 bg-gradient-to-r from-[#6156F6] to-[#26C190] rounded-3xl opacity-20 blur-xl group-hover:opacity-30 transition-opacity"></div>
                 <img 
                   src="/images/creator image/Withdraw-Money-V2-876x1024.png" 
                   alt="Get Paid" 
                   className="relative rounded-2xl sm:rounded-3xl w-full h-auto object-cover shadow-2xl"
                 />
-              </div>
-              <div className={`space-y-3 sm:space-y-4 ${language === 'ar' ? 'text-right lg:col-start-1' : ''}`}>
-                <p className="text-[#6156F6] font-semibold text-sm sm:text-base">{t('how.step3')}</p>
-                <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-[#1d1d1d]">{t('how.step3.title')}</h3>
-                <p className="text-base sm:text-lg text-[#434E4E] leading-relaxed">{t('how.step3.description')}</p>
               </div>
             </div>
           </div>
