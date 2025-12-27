@@ -8,6 +8,8 @@ import { Navbar } from "./components/Navbar";
 import Home from "./pages/Home";
 import Creators from "./pages/Creators";
 import Ads from "./pages/Ads";
+import TermsAndConditions from "./pages/TermsAndConditions";
+import PrivacyPolicy from "./pages/PrivacyPolicy";
 import NotFound from "./pages/NotFound";
 
 const queryClient = new QueryClient();
@@ -28,15 +30,21 @@ const App = () => (
             <Route path="/en" element={<Home />} />
             <Route path="/en/creators" element={<Creators />} />
             <Route path="/en/ads" element={<Ads />} />
+            <Route path="/en/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/en/privacy-policy" element={<PrivacyPolicy />} />
             
             {/* Arabic routes */}
             <Route path="/ar" element={<Home />} />
             <Route path="/ar/creators" element={<Creators />} />
             <Route path="/ar/ads" element={<Ads />} />
+            <Route path="/ar/terms-and-conditions" element={<TermsAndConditions />} />
+            <Route path="/ar/privacy-policy" element={<PrivacyPolicy />} />
             
             {/* Legacy routes without language prefix - redirect to English */}
             <Route path="/creators" element={<Navigate to="/en/creators" replace />} />
             <Route path="/ads" element={<Navigate to="/en/ads" replace />} />
+            <Route path="/terms-and-conditions" element={<Navigate to="/en/terms-and-conditions" replace />} />
+            <Route path="/privacy-policy" element={<Navigate to="/en/privacy-policy" replace />} />
             
             {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
             <Route path="*" element={<NotFound />} />

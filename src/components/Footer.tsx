@@ -81,6 +81,12 @@ export const Footer = () => {
               <li>
                 <a href={`/${language}/creators`} className="text-gray-400 hover:text-[#7CFBBA] transition-colors">{t('footer.quickLinks.creators')}</a>
               </li>
+              <li>
+                <a href={`/${language}/terms-and-conditions`} className="text-gray-400 hover:text-[#7CFBBA] transition-colors">{t('footer.terms')}</a>
+              </li>
+              <li>
+                <a href={`/${language}/privacy-policy`} className="text-gray-400 hover:text-[#7CFBBA] transition-colors">{t('footer.privacy')}</a>
+              </li>
             </ul>
           </div>
 
