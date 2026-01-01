@@ -20,13 +20,13 @@ const translations = {
     'nav.register': 'Register',
     'nav.registerCreator': 'Register as a creator',
     'nav.startNow': 'Start now',
-    
+
     // Creators Hero
     'creators.hero.title': 'Love creating content?',
     'creators.hero.subtitle': 'Get paid for it.',
     'creators.hero.description': 'Earn for shooting a UGC videos for brands looking for Creative creators.',
     'creators.hero.cta': 'Become a Creator',
-    
+
     // How it works
     'how.title': 'How does it work?',
     'how.step1': '1. Step',
@@ -38,12 +38,12 @@ const translations = {
     'how.step3': '3. Step',
     'how.step3.title': 'Get paid',
     'how.step3.description': 'When the brand is happy with your content, they\'ll approve it which releases payment into your account.',
-    
+
     // No followers section
     'noFollowers.title': 'No followers, no worries.',
     'noFollowers.description': 'You don\'t have to be an influencer or actor. All you need is a smartphone or a working camera and you\'re ready to start making money for your content.',
     'noFollowers.cta': 'Get started now',
-    
+
     // FAQ
     'faq.title': 'Frequently asked questions',
     'faq.q1': 'What if I don\'t have much experience in content creation?',
@@ -53,24 +53,24 @@ const translations = {
     'faq.q4': 'How long does it take for my application to be accepted?',
     'faq.q5': 'Do I have to speak in my videos?',
     'faq.q6': 'How do I get paid?',
-    
+
     // Home Hero
     'home.hero.title': 'Are you a brand owner or online store owner and need a content creator?',
     'home.hero.description': 'Connect instantly with ready-to-work content creators for your brand today',
     'home.hero.cta': 'Register Now',
     'home.hero.watchVideo': 'Watch video',
-    
+
     // 1500+ creators
     'home.creators.title': 'content creators in Saudi Arabia ready to create UGC content for your products',
     'home.creators.count': '+1500',
     'home.creators.description': 'Within minutes of posting your campaign, content creators apply and you get to review their portfolios and choose the perfect content creator!',
     'home.creators.cta': 'Create your campaign now',
-    
+
     // Examples
     'home.examples.title': 'Just some examples to get your creative juices flowing!',
     'home.examples.card': '+1500 TikTok Creators are ready to work with you',
     'home.examples.cta': 'Create my UGC campaign',
-    
+
     // How it works tabs
     'home.howItWorks.title': 'How it works',
     'home.howItWorks.tab1': 'Create campaign',
@@ -86,12 +86,12 @@ const translations = {
     'home.howItWorks.tab4.title': 'Receive content',
     'home.howItWorks.tab4.description': 'Content creators upload the content in standard form with UGC content. Request what you need from the best content creators.',
     'home.howItWorks.signUp': 'Register Now',
-    
+
     // Brands section
     'home.brands.title': 'We help',
     'home.brands.count': '1000+ local brands',
     'home.brands.subtitle': 'reach the best content creators to market their products and services',
-    
+
     // Home FAQ
     'home.faq.title': 'Frequently Asked Questions',
     'home.faq.q1': 'What makes pusbrands a suitable choice?',
@@ -104,7 +104,7 @@ const translations = {
     'home.faq.a4': 'Yes, our platform is perfect for agencies managing multiple brands and scaling content creation services.',
     'home.faq.q5': 'Can I communicate with content creators?',
     'home.faq.a5': 'Yes, you can communicate with creators through our chat system to discuss your requirements and provide feedback.',
-    
+
     // Who can benefit
     'home.benefit.title': 'Who can benefit from UGC?',
     'home.benefit.ecommerce.title': 'Online Store Owners',
@@ -113,7 +113,7 @@ const translations = {
     'home.benefit.apps.description': 'Expand your app growth in standard form with UGC content. Request what you need for your digital products produced by the best content creators',
     'home.benefit.agency.title': 'Marketing Agency',
     'home.benefit.agency.description': 'Scale your content creation services with over 1500 UGC content creators ready to work with your agency!',
-    
+
     // Stats
     'home.stats.views': '150 K views on',
     'home.stats.platforms': 'the platforms',
@@ -123,7 +123,7 @@ const translations = {
     'ads.hero.subtitle': 'Over 1500 content creators in Saudi Arabia ready to create UGC content for your products',
     'ads.hero.pricing': 'Video prices start from 150 SAR only',
     'ads.hero.cta': 'Register Now',
-    
+
     // Ads Stats
     'ads.stats.title': 'Numbers Our Clients Have Achieved',
     'ads.stats.stat1.title': 'Store Ad Performance',
@@ -132,7 +132,7 @@ const translations = {
     'ads.stats.stat2.description': 'By favoring creative UGC videos that we created, our clients enabled us to achieve an increase in sales by 40%.',
     'ads.stats.stat3.title': 'CTR Increase',
     'ads.stats.stat3.description': 'By favoring UGC videos provided by our creative content creators, our clients\' campaigns achieved a CTR increase of up to 10%.',
-    
+
     // Ads Benefit
     'ads.benefit.title': 'Who can benefit from UGC?',
     'ads.benefit.ecommerce.title': 'Online Store Owners',
@@ -141,7 +141,7 @@ const translations = {
     'ads.benefit.apps.description': 'Scale your growth with UGC content, request what you need for your digital products from the best content creators.',
     'ads.benefit.agency.title': 'Marketing Agency',
     'ads.benefit.agency.description': 'Expand content creation services with over 1500 UGC creators ready to work with your agency!',
-    
+
     // Ads Testimonials
     'ads.testimonials.title': 'We help over +1000 local brands',
     'ads.testimonials.subtitle': 'To reach the best content creators to market their products and services',
@@ -176,6 +176,8 @@ const translations = {
     'footer.forCreators.payment': 'Payment Info',
     'footer.forCreators.support': 'Support',
     'footer.copyright': '© 2025 PushBrands. All rights reserved.',
+    'footer.registrationNumber': 'Registration Number',
+    'footer.vatNumber': 'VAT Number',
     'footer.privacy': 'Privacy Policy',
     'footer.terms': 'Terms of Service',
     'footer.cookies': 'Cookie Policy',
@@ -190,13 +192,13 @@ const translations = {
     'nav.register': 'تسجيل',
     'nav.registerCreator': 'سجل صانع محتوى',
     'nav.startNow': 'ابدأ الآن',
-    
+
     // Creators Hero
     'creators.hero.title': 'هل تحب صناعة المحتوى؟',
     'creators.hero.subtitle': 'أحصل على أموال مقابل ذلك.',
     'creators.hero.description': 'اربح مقابلا مقاطع فيديو UGC للعلامات التي تبحث عن أشخاص مبدعين لتسويق منتجاتهم.',
     'creators.hero.cta': 'كون صانع محتوى',
-    
+
     // How it works
     'how.title': 'كيف طريقة العمل',
     'how.step1': 'الخطوة الأولى',
@@ -208,12 +210,12 @@ const translations = {
     'how.step3': 'الخطوة الثالثة',
     'how.step3.title': 'الحصول على أموال',
     'how.step3.description': 'عندما يكون البائد راضية عن المحتوى، سيوافق عليه مما يؤدي إلى تحويل المبلغ على محفظتك.',
-    
+
     // No followers section
     'noFollowers.title': 'ماعندك متابعين لا تشيل هم.',
     'noFollowers.description': 'ليس عليك أن تكون مشهور كل ما تحتاجه هو هاتف ذكي أو كاميرا، وستكون جاهز للبدء في جني الأموال مقابل صناعة المحتوى.',
     'noFollowers.cta': 'سجل الآن',
-    
+
     // FAQ
     'faq.title': 'الأسئلة الشائعة',
     'faq.q1': 'ماذا لو لم يكن لدي الكثير من الخبرة في إنشاء المحتوى؟',
@@ -223,24 +225,24 @@ const translations = {
     'faq.q4': 'كم من الوقت يستغرق قبول طلبي؟',
     'faq.q5': 'هل يجب أن أتحدث في مقاطع الفيديو الخاصة بي؟',
     'faq.q6': 'كيف أحصل على أموالي؟',
-    
+
     // Home Hero
     'home.hero.title': 'صاحب علامة تجارية أو متجر الكتروني وتحتاج صانع محتوى؟',
     'home.hero.description': 'تواصل فوراً مع صناع المحتوى المستعدين للعمل مع علامتك التجارية اليوم',
     'home.hero.cta': 'سجل الآن',
     'home.hero.watchVideo': 'شاهد الفيديو',
-    
+
     // 1500+ creators
     'home.creators.title': 'صانع محتوى في السعودية جاهزين لإنشاء محتوى UGC لمنتجاتك',
     'home.creators.count': '+1500',
     'home.creators.description': 'في غضون دقائق من نشر حملتك، يتقدم صناع المحتوى بطلب ويمكنك مراجعة بروفايلهم واختيار صانع المحتوى المثالي!',
     'home.creators.cta': 'أنشئ حملتك الآن',
-    
+
     // Examples
     'home.examples.title': 'بعض الامثلة عن أعمال صانعي المحتوى لدينا',
     'home.examples.card': '+1500 منشئ محتوى على تيك توك جاهزون للعمل معك',
     'home.examples.cta': 'أنشئ حملة UGC الخاصة بي',
-    
+
     // How it works tabs
     'home.howItWorks.title': 'طريقة العمل',
     'home.howItWorks.tab1': 'أنشئ الحملة',
@@ -256,12 +258,12 @@ const translations = {
     'home.howItWorks.tab4.title': 'استلم المحتوى',
     'home.howItWorks.tab4.description': 'يقوم صانع المحتوى برفع المحتوى بشكل قياسي مع محتوى UGC إطلب ما تحتاجه افضل صناع المحتوى.',
     'home.howItWorks.signUp': 'سجل الآن',
-    
+
     // Brands section
     'home.brands.title': 'نحن نساعد',
     'home.brands.count': '+1000 علامة تجارية محلية',
     'home.brands.subtitle': 'للوصول إلى أفضل منشئي المحتوى لتسويق منتجاتهم وخدماتهم',
-    
+
     // Home FAQ
     'home.faq.title': 'الأسئلة الشائعة المتكررة',
     'home.faq.q1': 'ما الذي يجعل pusbrands خيار مناسب؟',
@@ -274,7 +276,7 @@ const translations = {
     'home.faq.a4': 'نعم، منصتنا مثالية للوكالات التي تدير علامات تجارية متعددة وتوسع خدمات إنشاء المحتوى.',
     'home.faq.q5': 'هل يمكنني التواصل مع صانع المحتوى؟',
     'home.faq.a5': 'نعم، يمكنك التواصل مع المبدعين من خلال نظام الدردشة الخاص بنا لمناقشة متطلباتك وتقديم الملاحظات.',
-    
+
     // Who can benefit
     'home.benefit.title': 'من يمكنه الاستفادة من UGC؟',
     'home.benefit.ecommerce.title': 'أصحاب المتاجر الإلكترونية',
@@ -283,7 +285,7 @@ const translations = {
     'home.benefit.apps.description': 'وسع نمو تطبيق بشكل قياسي مع محتوى UGC إطلب ما تحتاجه لمنتجاتك الرقمية التي ينتجها أفضل صناع المحتوى',
     'home.benefit.agency.title': 'وكالة تسويق',
     'home.benefit.agency.description': 'قم توسيع خدمات صناعة المحتوى الخاصة بك مع أكثر من 1500 صناع محتوى UGC والمستعدين للعمل مع وكالتك!',
-    
+
     // Stats
     'home.stats.views': '150 ألف مشاهدة على',
     'home.stats.platforms': 'المنصات',
@@ -293,7 +295,7 @@ const translations = {
     'ads.hero.subtitle': 'أكثر من 1500 صانع محتوى في السعودية جاهزين لإنشاء محتوى UGC لمنتجاتك',
     'ads.hero.pricing': 'أسعار الفيديوهات تبدأ من 150 ريال فقط',
     'ads.hero.cta': 'سجل الآن',
-    
+
     // Ads Stats
     'ads.stats.title': 'أرقام حققها عملائنا',
     'ads.stats.stat1.title': 'إعلانات المتاجر',
@@ -302,7 +304,7 @@ const translations = {
     'ads.stats.stat2.description': 'بفضل مقاطع UGC الإبداعية التي تم إنشائها عبر منصتنا، تمكن عملائنا من تحقيق زيادة في المبيعات بنسبة 40%',
     'ads.stats.stat3.title': 'زيادة معدل نقر (CTR)',
     'ads.stats.stat3.description': 'بفضل مقاطع UGC التي يوفرها صناع المحتوى عبر منصتنا، حققت حملات عملائنا معدل نقر (CTR) يصل إلى 10%',
-    
+
     // Ads Benefit
     'ads.benefit.title': 'من يمكنه الاستفادة من UGC؟',
     'ads.benefit.ecommerce.title': 'أصحاب المتاجر الإلكترونية',
@@ -311,7 +313,7 @@ const translations = {
     'ads.benefit.apps.description': 'وسع نمو تطبيق بشكل قياسي مع محتوى UGC إطلب ما تحتاجه لمنتجاتك الرقمية التي ينتجها أفضل صناع المحتوى',
     'ads.benefit.agency.title': 'وكالة تسويق',
     'ads.benefit.agency.description': 'قم توسيع خدمات صناعة المحتوى الخاصة بك مع أكثر من 1500 صناع محتوى UGC والمستعدين للعمل مع وكالتك!',
-    
+
     // Ads Testimonials
     'ads.testimonials.title': 'نساعد +1000 براند محلي',
     'ads.testimonials.subtitle': 'للوصول الى افضل صناع المحتوى لتسويق منتجاتهم وخدماتهم',
@@ -346,6 +348,8 @@ const translations = {
     'footer.forCreators.payment': 'معلومات الدفع',
     'footer.forCreators.support': 'الدعم',
     'footer.copyright': '© 2025 بوش براندز. جميع الحقوق محفوظة.',
+    'footer.registrationNumber': 'السجل التجاري',
+    'footer.vatNumber': 'الرقم الضريبي',
     'footer.privacy': 'سياسة الخصوصية',
     'footer.terms': 'شروط الخدمة',
     'footer.cookies': 'سياسة ملفات تعريف الارتباط',
@@ -376,7 +380,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
   const toggleLanguage = () => {
     const newLanguage = language === 'en' ? 'ar' : 'en';
     const currentPath = location.pathname;
-    
+
     // Replace language prefix in URL
     let newPath = currentPath;
     if (currentPath.startsWith('/en')) {
@@ -387,7 +391,7 @@ export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({ chil
       // If no language prefix, add one
       newPath = `/${newLanguage}${currentPath}`;
     }
-    
+
     navigate(newPath);
     setLanguage(newLanguage);
   };
